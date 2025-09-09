@@ -16,13 +16,11 @@ public class SpeedReader {
     This method is responsible for updating the text in the window for the speed reader.
     You will need to change the parameters as you complete this part of the assignment.
      */
-    public static void show(String filename) {
+    public static void show(String filename, int rate) {
 
         // this sets up the window... don't forget to call it!
         setup();
-
-        // this represents the number to be displayed in the window
-        int count = 0;
+        int delay = 1000 / (rate / 60);
 
         try {
             Scanner scanner = new Scanner(new File(filename));
@@ -33,7 +31,7 @@ public class SpeedReader {
                 StdDraw.show();
 
                 // this causes the program to wait for 500ms
-                StdDraw.pause(500);
+                StdDraw.pause(delay);
 
                 // this removes everything that is being displayed
                 StdDraw.clear();
@@ -91,7 +89,9 @@ public class SpeedReader {
 
     public static void main(String[] args) {
         // modify this code as needed in order to pass arguments to the show() method
-        show("alice.txt");
+        String filename = args[0];
+        int rate = Integer.parseInt(args[1]);
+        show(filename, rate);
     }
     
 }
