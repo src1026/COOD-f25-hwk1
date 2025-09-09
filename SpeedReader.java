@@ -28,10 +28,7 @@ public class SpeedReader {
             Scanner scanner = new Scanner(new File(filename));
             while (scanner.hasNext()) {
                 String word = scanner.next();
-                // this places the text in the center of the screen
-                // the coordinate (50, 50) is used for the center of the text
-                StdDraw.text(50, 50, String.valueOf(word));
-
+                displayWord(word);
                 // this displays the text
                 StdDraw.show();
 
@@ -46,6 +43,26 @@ public class SpeedReader {
             e.printStackTrace();
         }
 
+    }
+
+    public static void displayWord(String word){
+        // this helper function display a word,
+        // with its middle char in red and rest in black
+        if (word.length() % 2 == 1){
+            // display entire word in black
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.text(50, 50, String.valueOf(word));
+            // then overlap middle char in red
+            Character anchorChar = word.charAt(word.length()/2);
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.text(50, 50, String.valueOf(anchorChar));
+        } else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.text(46.1, 50, String.valueOf(word));
+            Character anchorChar = word.charAt(word.length()/2);
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.text(50, 50, String.valueOf(anchorChar));
+        }
     }
 
     /*
