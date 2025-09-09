@@ -6,13 +6,17 @@
  * @author Chris Murphy
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class SpeedReader {
 
     /*
     This method is responsible for updating the text in the window for the speed reader.
     You will need to change the parameters as you complete this part of the assignment.
      */
-    public static void show() {
+    public static void show(String filename) {
 
         // this sets up the window... don't forget to call it!
         setup();
@@ -20,24 +24,26 @@ public class SpeedReader {
         // this represents the number to be displayed in the window
         int count = 0;
 
-        while (true) { // this is an infinite loop but it's fine for now!
+        try {
+            Scanner scanner = new Scanner(new File(filename));
+            while (scanner.hasNext()) {
+                String word = scanner.next();
+                // this places the text in the center of the screen
+                // the coordinate (50, 50) is used for the center of the text
+                StdDraw.text(50, 50, String.valueOf(word));
 
-            // increment the number to display on each iteration of the loop
-            count++;
+                // this displays the text
+                StdDraw.show();
 
-            // this places the text in the center of the screen
-            // the coordinate (50, 50) is used for the center of the text
-            StdDraw.text(50, 50, String.valueOf(count));
+                // this causes the program to wait for 500ms
+                StdDraw.pause(500);
 
-            // this displays the text
-            StdDraw.show();
+                // this removes everything that is being displayed
+                StdDraw.clear();
+            }
 
-            // this causes the program to wait for 500ms
-            StdDraw.pause(500);
-
-            // this removes everything that is being displayed
-            StdDraw.clear();
-
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
     }
@@ -68,7 +74,7 @@ public class SpeedReader {
 
     public static void main(String[] args) {
         // modify this code as needed in order to pass arguments to the show() method
-        show();
+        show("alice.txt");
     }
     
 }
