@@ -13,13 +13,12 @@ public class DrawableCircle extends DrawableShape{
     }
 
     public double area() {
-        double area = this.radius * this.radius * Math.PI;
-        return area;
+        return this.getRadius() * this.getRadius() * Math.PI;
     }
 
     public void draw() {
-        StdDraw.setPenColor(this.color);
-        StdDraw.filledCircle(this.center_x, this.center_y, this.radius);;
+        StdDraw.setPenColor(this.getColor());
+        StdDraw.filledCircle(this.getCenterX(), this.getCenterY(), this.getRadius());;
     }
 
     public static void main(String[] args){

@@ -9,14 +9,22 @@ public class DrawableRectangle extends DrawableShape {
         this.width = width;
         this.height = height;
     }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
     public double area() {
-        double area = this.width * this.height;
-        return area;
+        return this.getWidth() * this.getHeight();
     }
 
     public void draw() {
-        StdDraw.setPenColor(this.color);
-        StdDraw.filledRectangle(this.center_x, this.center_y, this.width / 2, this.height / 2);
+        StdDraw.setPenColor(this.getColor());
+        StdDraw.filledRectangle(this.getCenterX(), this.getCenterY(), this.getWidth() / 2, this.getHeight() / 2);
     }
 
     public static void main(String[] args) {

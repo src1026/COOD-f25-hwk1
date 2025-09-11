@@ -6,6 +6,7 @@
  * @author Chris Murphy
  */
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -48,13 +49,21 @@ public class SpeedReader {
     }
 
     public static void setPenColor(java.awt.Color color) {
-        System.out.println("Color: " + color);
+        String colorString = "";
+        if (color.equals(java.awt.Color.BLACK)) {
+            colorString = "Black";
+        } else if (color.equals(java.awt.Color.RED)) {
+            colorString = "Red";
+        } else {
+            colorString = "Other";
+        }
+        System.out.println("Color: " + colorString);
         StdDraw.setPenColor(color);
     }
 
     public static void printString(String text, double x, double y) {
         System.out.println(text);
-        System.out.println(x + " " + y);
+        // System.out.println(x + " " + y);
         StdDraw.text(x, y, String.valueOf(text));
     }
 
