@@ -16,18 +16,16 @@ public class DrawShapesFromFile {
                 String line = scanner.nextLine();
                 String[] parts = line.split(" ");
 
-                if (parts[0].equals("c")) {
-                    double x = Double.parseDouble(parts[1]);
-                    double y = Double.parseDouble(parts[2]);
-                    Color color = getColor(parts[3]);
+                char shape = parts[0].charAt(0);
+                double x = Double.parseDouble(parts[1]);
+                double y = Double.parseDouble(parts[2]);
+                Color color = getColor(parts[3]);
+
+                if (shape == 'c'){
                     double radius = Double.parseDouble(parts[4]);
                     shapes[i] = new DrawableCircle(x, y, color, radius);
-
-                } else if (parts[0].equals("r")) {
-                    double x = Double.parseDouble(parts[1]);
-                    double y = Double.parseDouble(parts[2]);
-                    Color color = getColor(parts[3]);
-                    double width = Double.parseDouble(parts[4]);
+                } else if (shape == 'r') {
+                    double width  = Double.parseDouble(parts[4]);
                     double height = Double.parseDouble(parts[5]);
                     shapes[i] = new DrawableRectangle(x, y, color, width, height);
                 }
