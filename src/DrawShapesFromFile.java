@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.awt.Color;
 
 public class DrawShapesFromFile {
+    // part 5: after reviewing the code, I extracted the common fields for circles and shapes (lines 21 - 24)
+    // so as to avoid duplicate code.
 
     public static DrawableShape[] readFile(String filename) {
         try {
@@ -15,7 +17,7 @@ public class DrawShapesFromFile {
             for (int i = 0; i < n; i++) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(" ");
-
+                // here are the common fields i extracted from the branches.
                 char shape = parts[0].charAt(0);
                 double x = Double.parseDouble(parts[1]);
                 double y = Double.parseDouble(parts[2]);
