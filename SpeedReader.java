@@ -24,7 +24,7 @@ public class SpeedReader {
             System.out.println("Please specify a positive integer!");
             return;
         }
-        int delay = 1000 / (rate / 60);
+        int delay = 60000 / rate;
 
         try {
             Scanner scanner = new Scanner(new File(filename));
@@ -47,23 +47,34 @@ public class SpeedReader {
 
     }
 
+    public static void setPenColor(java.awt.Color color) {
+        System.out.println("Color: " + color);
+        StdDraw.setPenColor(color);
+    }
+
+    public static void printString(String text, double x, double y) {
+        System.out.println(text);
+        System.out.println(x + " " + y);
+        StdDraw.text(x, y, String.valueOf(text));
+    }
+
     public static void displayWord(String word){
         // this helper function display a word,
         // with its middle char in red and rest in black
         if (word.length() % 2 == 1){
             // display entire word in black
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.text(50, 50, String.valueOf(word));
+            setPenColor(StdDraw.BLACK);
+            printString(word, 50, 50);
             // then overlap middle char in red
             Character anchorChar = word.charAt(word.length()/2);
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.text(50, 50, String.valueOf(anchorChar));
+            setPenColor(StdDraw.RED);
+            printString(String.valueOf(anchorChar), 50, 50);
         } else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.text(46.1, 50, String.valueOf(word));
+            setPenColor(StdDraw.BLACK);
+            printString(word, 46.1, 50);
             Character anchorChar = word.charAt(word.length()/2);
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.text(50, 50, String.valueOf(anchorChar));
+            setPenColor(StdDraw.RED);
+            printString(String.valueOf(anchorChar), 50, 50);
         }
     }
 
