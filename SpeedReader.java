@@ -20,6 +20,10 @@ public class SpeedReader {
 
         // this sets up the window... don't forget to call it!
         setup();
+        if (rate <= 0) {
+            System.out.println("Please specify a positive integer!");
+            return;
+        }
         int delay = 1000 / (rate / 60);
 
         try {
@@ -38,7 +42,7 @@ public class SpeedReader {
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error reading file");
         }
 
     }
@@ -88,9 +92,33 @@ public class SpeedReader {
 
 
     public static void main(String[] args) {
-        // modify this code as needed in order to pass arguments to the show() method
+        // 1. check number of arguments
+        if  (args.length != 2) {
+            System.out.println("Please specify the file name and wpm!");
+            return;
+        }
         String filename = args[0];
-        int rate = Integer.parseInt(args[1]);
+        int rate;
+
+        // 2. check positive integer
+        try {
+            rate = Integer.parseInt(args[1]);
+            if (rate <= 0) {
+                System.out.println("Please specify a positive wpm");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Please specify a positive wpm");
+            return;
+        }
+
+        // 3. try opening with the file
+        File file = new File(filename);
+        if (!file.exists() || !file.canRead()) {
+            System.out.println("Error reading file");
+            return;
+        }
+
         show(filename, rate);
     }
     
