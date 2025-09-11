@@ -1,5 +1,3 @@
-import java.awt.Color;
-
 public abstract class DrawableShape {
     double center_x;
     double center_y;
